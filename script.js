@@ -8,9 +8,6 @@ let computerScore = 0
 function getComputerChoice() {
   const gameOptions = [`Rock`, `Paper`, `Scissors`]
   const randomNumber = Math.floor(Math.random() * 3) //Random number between 0 & 2//
-  // log(
-  //   `The Random Number is ${randomNumber} and the Computer choice is ${gameOptions[randomNumber]}`
-  // )
   return gameOptions[randomNumber]
 }
 
@@ -21,9 +18,6 @@ function getHumanChoice() {
     `Please enter your choice(Rock, Paper or Scissors)`,
     `${gameOptions[randomNumber]}`
   )
-  // log(
-  //   `The Random Number is ${randomNumber} and the Human choice is ${humanChoice}`
-  // )
   return humanChoice[0].toUpperCase() + humanChoice.slice(1).toLowerCase()
 }
 
