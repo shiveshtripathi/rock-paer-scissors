@@ -11,15 +11,15 @@ function getComputerChoice() {
   return gameOptions[randomNumber]
 }
 
-function getHumanChoice() {
-  const gameOptions = [`Rock`, `Paper`, `Scissors`] //To Provide a default value in the prompt box//
-  const randomNumber = Math.floor(Math.random() * 3) //Random number between 0 & 2//
-  const humanChoice = prompt(
-    `Please enter your choice(Rock, Paper or Scissors)`,
-    `${gameOptions[randomNumber]}`
-  )
-  return humanChoice[0].toUpperCase() + humanChoice.slice(1).toLowerCase()
-}
+// function getHumanChoice() {
+//   const gameOptions = [`Rock`, `Paper`, `Scissors`] //To Provide a default value in the prompt box//
+//   const randomNumber = Math.floor(Math.random() * 3) //Random number between 0 & 2//
+//   const humanChoice = prompt(
+//     `Please enter your choice(Rock, Paper or Scissors)`,
+//     `${gameOptions[randomNumber]}`
+//   )
+//   return humanChoice[0].toUpperCase() + humanChoice.slice(1).toLowerCase()
+// }
 
 function playGame() {
   const computerSelection = getComputerChoice()
