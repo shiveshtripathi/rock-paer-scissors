@@ -52,3 +52,12 @@ ul {
   font-weight: bold;
   cursor: pointer;
 }
+
+.roundResult {
+  min-height: 21px;
+  font-weight: bolder;
+  text-align: center;
+  padding: 15px;
+  color: black;
+  font-size: large;
+}

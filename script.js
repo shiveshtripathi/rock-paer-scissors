@@ -1,7 +1,10 @@
 'use strict'
 
-const log = console.log //Ease in outputting //
-const userInput = document.querySelector('.userInput')
+const log = console.log //Ease in outputting
+const userInput = document.querySelector('.userInput') //Event delegation to check which button was clicked user input
+const humanScorecard = document.querySelector('.humanScore') // To display player's score card
+const computerScorecard = document.querySelector('.computerScore') //To display computer' scorecard
+const displayRoundResult = document.querySelector('.roundResult') //To print the round result who beats who
 
 let humanScore = 0
 let computerScore = 0
@@ -11,7 +14,7 @@ userInput.addEventListener('click', function (event) {
   if (event.target.tagName === 'BUTTON') {
     // Check which button was clicked using its class name
     if (event.target.classList.contains('rock-btn')) {
-      playGame('Rock')
+      playGame('Rock') // call the playGame function with argument which button was clicked
     } else if (event.target.classList.contains('paper-btn')) {
       playGame('Paper')
     } else if (event.target.classList.contains('scissors-btn')) {
@@ -20,50 +23,40 @@ userInput.addEventListener('click', function (event) {
   }
 })
 
+// To randomly generate computer's choice
 function getComputerChoice() {
   const gameOptions = [`Rock`, `Paper`, `Scissors`]
-  const randomNumber = Math.floor(Math.random() * 3) //Random number between 0 & 2//
+  const randomNumber = Math.floor(Math.random() * 3) //Random number between 0 & 2
   return gameOptions[randomNumber]
 }
 
-// function getHumanChoice() {
-//   const gameOptions = [`Rock`, `Paper`, `Scissors`] //To Provide a default value in the prompt box//
-//   const randomNumber = Math.floor(Math.random() * 3) //Random number between 0 & 2//
-//   const humanChoice = prompt(
-//     `Please enter your choice(Rock, Paper or Scissors)`,
-//     `${gameOptions[randomNumber]}`
-//   )
-//   return humanChoice[0].toUpperCase() + humanChoice.slice(1).toLowerCase()
-// }
-
 function playGame(humanChoice) {
   const computerSelection = getComputerChoice()
-  // const humanSelection = getHumanChoice()
 
   function playRound(computerSelection, humanSelection) {
     const humanChoice = humanSelection.toLowerCase()
     const computerChoice = computerSelection.toLowerCase()
     if (humanChoice === computerChoice) {
-      console.log(
-        `It's a Draw! ${humanSelection} befriends ${computerSelection}`
-      )
+      displayRoundResult.textContent = `It's a Draw! ${humanSelection} befriends ${computerSelection}`
     } else if (computerChoice === `rock` && humanChoice === `paper`) {
-      console.log(`You Win! ${humanSelection} beats ${computerSelection}`)
+      displayRoundResult.textContent = `You Win! ${humanSelection} beats ${computerSelection}`
       humanScore += 1
     } else if (computerChoice === `scissors` && humanChoice === `rock`) {
-      console.log(`You Win! ${humanSelection} beats ${computerSelection}`)
+      displayRoundResult.textContent = `You Win! ${humanSelection} beats ${computerSelection}`
       humanScore += 1
     } else if (computerChoice === `paper` && humanChoice === `scissors`) {
-      console.log(`You Win! ${humanSelection} beats ${computerSelection}`)
+      displayRoundResult.textContent = `You Win! ${humanSelection} beats ${computerSelection}`
       humanScore += 1
     } else {
-      console.log(`You Lose! ${computerSelection} beats ${humanSelection}`)
+      displayRoundResult.textContent = `You Lose! ${computerSelection} beats ${humanSelection}`
       computerScore += 1
     }
   }
 
   playRound(computerSelection, humanChoice)
   printResult()
+  humanScorecard.textContent = `Puny Human Score : ${humanScore}`
+  computerScorecard.textContent = `MIGHTY COMPUTER Score : ${computerScore}`
 }
 
 // for (let counter = 1; counter < 6; counter++) {
