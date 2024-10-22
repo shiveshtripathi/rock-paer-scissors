@@ -30,9 +30,21 @@ function getComputerChoice() {
   return gameOptions[randomNumber]
 }
 
+// To display the Scorecard
+function setScore() {
+  humanScorecard.textContent = `Puny Human Score : ${humanScore}`
+  computerScorecard.textContent = `MIGHTY COMPUTER Score : ${computerScore}`
+}
+
+function resetScore() {
+  humanScorecard.textContent = `Puny Human Score : 0`
+  computerScorecard.textContent = `MIGHTY COMPUTER Score : 0`
+  humanScore = 0
+  computerScore = 0
+}
+
 function playRound(humanChoice) {
   const computerChoice = getComputerChoice()
-  console.log(computerChoice)
   if (humanChoice === computerChoice) {
     displayRoundResult.textContent = `It's a Draw! ${humanChoice} befriends ${computerChoice}`
   } else if (computerChoice === `Rock` && humanChoice === `Paper`) {
@@ -48,21 +60,18 @@ function playRound(humanChoice) {
     displayRoundResult.textContent = `You Lose! ${humanChoice} loses to ${computerChoice}`
     computerScore += 1
   }
-  humanScorecard.textContent = `Puny Human Score : ${humanScore}`
-  computerScorecard.textContent = `MIGHTY COMPUTER Score : ${computerScore}`
+  setScore()
+  if (humanScore === 5 || computerScore === 5) {
+    printResult()
+  }
 }
 
 function printResult() {
   if (humanScore > computerScore) {
-    console.log(
-      `You Win! You won ${humanScore} rounds while Computer won ${computerScore} rounds`
-    )
+    displayRoundResult.textContent = `You Win! You won ${humanScore} rounds while Computer won ${computerScore} rounds`
+    resetScore()
   } else if (computerScore > humanScore) {
-    console.log(
-      `You Lose! You won ${humanScore} rounds while Computer won ${computerScore} rounds`
-    )
-  } else
-    console.log(
-      `It's a Draw! You won ${humanScore} rounds while Computer won ${computerScore} rounds`
-    )
+    displayRoundResult.textContent = `You Lose! You won ${humanScore} rounds while Computer won ${computerScore} rounds`
+    resetScore()
+  }
 }
