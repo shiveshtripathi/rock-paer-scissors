@@ -14,11 +14,11 @@ userInput.addEventListener('click', function (event) {
   if (event.target.tagName === 'BUTTON') {
     // Check which button was clicked using its class name
     if (event.target.classList.contains('rock-btn')) {
-      playGame('Rock') // call the playGame function with argument which button was clicked
+      playRound('Rock') // call the playRound function with argument which button was clicked
     } else if (event.target.classList.contains('paper-btn')) {
-      playGame('Paper')
+      playRound('Paper')
     } else if (event.target.classList.contains('scissors-btn')) {
-      playGame('Scissors')
+      playRound('Scissors')
     }
   }
 })
@@ -30,38 +30,28 @@ function getComputerChoice() {
   return gameOptions[randomNumber]
 }
 
-function playGame(humanChoice) {
-  const computerSelection = getComputerChoice()
-
-  function playRound(computerSelection, humanSelection) {
-    const humanChoice = humanSelection.toLowerCase()
-    const computerChoice = computerSelection.toLowerCase()
-    if (humanChoice === computerChoice) {
-      displayRoundResult.textContent = `It's a Draw! ${humanSelection} befriends ${computerSelection}`
-    } else if (computerChoice === `rock` && humanChoice === `paper`) {
-      displayRoundResult.textContent = `You Win! ${humanSelection} beats ${computerSelection}`
-      humanScore += 1
-    } else if (computerChoice === `scissors` && humanChoice === `rock`) {
-      displayRoundResult.textContent = `You Win! ${humanSelection} beats ${computerSelection}`
-      humanScore += 1
-    } else if (computerChoice === `paper` && humanChoice === `scissors`) {
-      displayRoundResult.textContent = `You Win! ${humanSelection} beats ${computerSelection}`
-      humanScore += 1
-    } else {
-      displayRoundResult.textContent = `You Lose! ${computerSelection} beats ${humanSelection}`
-      computerScore += 1
-    }
+function playRound(humanChoice) {
+  const computerChoice = getComputerChoice()
+  console.log(computerChoice)
+  if (humanChoice === computerChoice) {
+    displayRoundResult.textContent = `It's a Draw! ${humanChoice} befriends ${computerChoice}`
+  } else if (computerChoice === `Rock` && humanChoice === `Paper`) {
+    displayRoundResult.textContent = `You Win! ${humanChoice} beats ${computerChoice}`
+    humanScore += 1
+  } else if (computerChoice === `Scissors` && humanChoice === `Rock`) {
+    displayRoundResult.textContent = `You Win! ${humanChoice} beats ${computerChoice}`
+    humanScore += 1
+  } else if (computerChoice === `Paper` && humanChoice === `Scissors`) {
+    displayRoundResult.textContent = `You Win! ${humanChoice} beats ${computerChoice}`
+    humanScore += 1
+  } else {
+    displayRoundResult.textContent = `You Lose! ${humanChoice} loses to ${computerChoice}`
+    computerScore += 1
   }
-
-  playRound(computerSelection, humanChoice)
-  printResult()
   humanScorecard.textContent = `Puny Human Score : ${humanScore}`
   computerScorecard.textContent = `MIGHTY COMPUTER Score : ${computerScore}`
 }
 
-// for (let counter = 1; counter < 6; counter++) {
-//   playGame()
-// }
 function printResult() {
   if (humanScore > computerScore) {
     console.log(
